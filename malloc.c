@@ -9,7 +9,7 @@ void *mymalloc(unsigned int size, char *file, int line)
 {
 
 }
-
+// function returns the allocated block to the memory resource, making it available to use in later malloc() calls.
 void myfree(void *p, char *file, int line){
 
 
