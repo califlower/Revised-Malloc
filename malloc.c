@@ -4,6 +4,7 @@
 
 
 #define TOTALMEMORY 5000
+#define NOMEM	-1
 
 
 static char block[TOTALMEMORY]; 
@@ -25,8 +26,12 @@ int findBlock (unsigned int size)
 			}
 			iter=iter->next;
 		}
-		return NULL;
+		return NOMEM;
 	}
+}
+void consolidator()
+{
+	
 }
 
 
@@ -57,11 +62,48 @@ void *mymalloc(unsigned int size, char *file, int line)
 		
 		exit->next=NULL;
 		exit->isFree=1;
+		exit->size=sizeof(block)-(sizeof(entry)+size);
 		exit->index=sizeof(entry+size);
 		
 		head=entry;
 		
 		
+		
+		return toInsert;
+		
+	}
+	else
+	{
+		int freeBlock;
+		
+		struct MemoryBlock *entry;
+		struct MemoryBlock *exit;
+		void *toInsert;
+		
+		
+		
+		freeBlock=findBlock(size+sizeof(struct MemoryBlock));
+		
+		if (freeBlock==NOMEM)
+		{
+			fprintf(stderr, "Not enough free memory FILE: '%s' on LINE: '%d'\n", file, line);
+			
+			return 0;
+		}
+		
+		entry=(struct MemoryBlock*)& block[freeBlock];
+		exit = (struct MemoryBlock*)& block[freeBlock+sizeof(entry)+size];
+		toInsert= (void *)& block[freeBlock+sizeof(entry)];
+		
+		
+		exit->next=entry->next;
+		entry->next=exit;
+		
+		entry->size=size;
+		entry->isFree=0;
+		entry->index=freeBlock;
+		
+		exit->index=(sizeof(entry+size));
 		
 		return toInsert;
 		
