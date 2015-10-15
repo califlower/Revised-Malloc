@@ -8,13 +8,24 @@
 
 static char block[TOTALMEMORY]; 
 
-int findBlock ()
+int findBlock (unsigned int size)
 {
-	if (head==NULL)
+	struct MemoryBlock iter=head;
+	
+	if (iter==NULL)
+		
 		return 0;
 	else
 	{
-		
+		while (iter!=NULL)
+		{
+			if (iter->size>=size && iter->isFree=1)
+			{
+				return iter->index;
+			}
+			iter=iter->next;
+		}
+		return 1;
 	}
 }
 
@@ -31,7 +42,14 @@ void *mymalloc(unsigned int size, char *file, int line)
 	else if (head==NULL)
 	{
 		struct MemoryBlock *entry;
-		entry = (struct MemoryBlock*) block;
+		
+		
+		entry = (struct MemoryBlock*)& block[0];
+		
+		
+		
+		exit = (struct MemoryBlock*)& block[];
+		
 		
 		entry->size=size;
 		entry->next=NULL;
