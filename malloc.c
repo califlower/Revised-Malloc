@@ -10,7 +10,7 @@ static char block[TOTALMEMORY];
 
 int findBlock (unsigned int size)
 {
-	struct MemoryBlock iter=head;
+	struct MemoryBlock *iter=head;
 	
 	if (iter==NULL)
 		
@@ -19,7 +19,7 @@ int findBlock (unsigned int size)
 	{
 		while (iter!=NULL)
 		{
-			if (iter->size>=size && iter->isFree=1)
+			if (iter->size>=size && iter->isFree==1)
 			{
 				return iter->index;
 			}
