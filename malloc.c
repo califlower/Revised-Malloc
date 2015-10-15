@@ -4,10 +4,12 @@
 
 static char myblock[MEMBLOCK]; //big block of memory space
 
-struct memNode
+struct MemEntry
 {
-	struct memNode *next;
-}
+	struct MemEntry *prev, *next;
+	int isfree;		// 1 - yes, 0 - no
+	int size;
+};
 *head;
 
 // Basic function of malloc(size t size) is to return a pointer to a block of the requested size.
