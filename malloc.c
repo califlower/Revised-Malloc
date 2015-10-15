@@ -29,7 +29,7 @@ int findBlock (unsigned int size)
 		return NOMEM;
 	}
 }
-void consolidator()
+void garbagecollector()
 {
 	
 }
