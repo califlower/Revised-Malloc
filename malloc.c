@@ -48,7 +48,7 @@ void *mymalloc(unsigned int size, char *file, int line)
 		
 		entry = (struct MemoryBlock*)& block[0];		
 		exit = (struct MemoryBlock*)& block[sizeof(entry)+size];
-		toInsert= (void *)&block[sizeof(entry)];
+		toInsert= (void *)& block[sizeof(entry)];
 		
 		entry->size=size;
 		entry->next=exit;
@@ -77,6 +77,10 @@ void myfree(void *p, char *file, int line)
 
  int main(int argc, char **argv) 
  {
-	malloc(2);
+	int *p=malloc(sizeof(int));
+	*p=30;
+	
+	printf("%i", *p);
+	
 	return 0;
  }
