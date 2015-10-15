@@ -104,6 +104,8 @@ void *mymalloc(unsigned int size, char *file, int line)
 		entry->index=freeBlock;
 		
 		exit->index=(sizeof(entry+size));
+		exit->isFree=1;
+		exit->size=(exit->next->index)-(exit->index);
 		
 		return toInsert;
 		
