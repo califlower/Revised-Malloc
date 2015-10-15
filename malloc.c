@@ -14,7 +14,7 @@ int findBlock ()
 		return 0;
 	else
 	{
-		return 2;
+		
 	}
 }
 
@@ -31,12 +31,15 @@ void *mymalloc(unsigned int size, char *file, int line)
 	else if (head==NULL)
 	{
 		struct MemoryBlock *entry;
+		entry = (struct MemoryBlock*) block;
 		
 		entry->size=size;
 		entry->next=NULL;
 		entry->isFree=0;
+		head=entry;
 		
 		void *pointer= (void *)&block[sizeof(entry)+size];
+		
 		return pointer;
 		
 	}
@@ -51,6 +54,6 @@ void myfree(void *p, char *file, int line)
 
  int main(int argc, char **argv) 
  {
-  
-  return 0;
+	malloc(2);
+	return 0;
  }
