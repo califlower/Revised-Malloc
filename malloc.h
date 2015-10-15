@@ -1,22 +1,15 @@
-#include <stdbool.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-#ifndef MALLOC_H
+#include<stddef.h>
 #define MALLOC_H
 
-#define malloc( x ) mymalloc( x , __FILE__ , __LINE__ )
-#define free( x ) myfree( x , __FILE__ , __LINE__ )
+void * my_malloc( unsigned int size, char * file, int line );
+void my_free( void * p, char * file, int line );
 
 
-#define MEMBLOCK 5000
+struct MemoryBlock
+{
+	struct MemoryBlock *next;
+	int isfree; // flag which is used to tell whether the program is freed or not
+	int size; // size of the block of memory
+};
 
-
-void * mymalloc( unsigned int size, char * file, int line );
-
-void myfree( void * p, char * file, int line );
-
-// add functions for each detectable errors
-
-#endif
+void MyFree(void* ptr);
