@@ -25,7 +25,7 @@ int findBlock (unsigned int size)
 			}
 			iter=iter->next;
 		}
-		return 1;
+		return NULL;
 	}
 }
 
@@ -41,24 +41,29 @@ void *mymalloc(unsigned int size, char *file, int line)
 	}
 	else if (head==NULL)
 	{
+		
 		struct MemoryBlock *entry;
+		struct MemoryBlock *exit;
+		void *toInsert;
 		
-		
-		entry = (struct MemoryBlock*)& block[0];
-		
-		
-		
-		exit = (struct MemoryBlock*)& block[];
-		
+		entry = (struct MemoryBlock*)& block[0];		
+		exit = (struct MemoryBlock*)& block[sizeof(entry)+size];
+		toInsert= (void *)&block[sizeof(entry)];
 		
 		entry->size=size;
-		entry->next=NULL;
+		entry->next=exit;
 		entry->isFree=0;
+		entry->index=0;
+		
+		exit->next=NULL;
+		exit->isFree=1;
+		exit->index=sizeof(entry+size);
+		
 		head=entry;
 		
-		void *pointer= (void *)&block[sizeof(entry)+size];
 		
-		return pointer;
+		
+		return toInsert;
 		
 	}
 
