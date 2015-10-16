@@ -97,9 +97,20 @@ void *mymalloc(unsigned int size, char *file, int line)
 		toInsert=(void *) &block[entry->index+sizeof(struct MemoryBlock)];
 		
 		exit->isFree=1;
-		exit->size=30;
+		
+		
 		exit->next=entry->next;
 		exit->index=entry->index+size;
+		
+		
+		if (exit->next==NULL)
+		{
+			exit->size=sizeof(block)-exit->index;
+		}
+		else
+		{
+			exit->size=exit->next->index-exit->index;
+		}
 		
 		entry->next=exit;
 		entry->isFree=0;
