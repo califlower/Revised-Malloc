@@ -10,13 +10,4 @@ void *mymalloc( unsigned int size, char * file, int line );
 void myfree( void * p, char * file, int line );
 
 
-struct MemoryBlock
-{
-	struct MemoryBlock *next;
-	int isFree; 
-	int index;
-	
-	unsigned int size; 
-}*head;
-
 
