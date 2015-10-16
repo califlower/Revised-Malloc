@@ -65,7 +65,7 @@ void *mymalloc(unsigned int size, char *file, int line)
 		if (!entry)
 		{
 			fprintf(stderr, "No more available space, error in FILE:'%s' on LINE:'%d'\n", file, line);
-			exit(0);
+			return NULL;
 		}
 		
 		end=(struct MemoryBlock*)entry+size;
@@ -103,7 +103,7 @@ void myfree(void *p, char *file, int line)
 	if (del->isFree==1)
 	{
 		fprintf(stderr, "Already freed pointer, error in FILE:'%s' on LINE:'%d'\n", file, line);
-		exit(0);
+		return;
 	}
 	else if (head->next->next==NULL)
 	{
