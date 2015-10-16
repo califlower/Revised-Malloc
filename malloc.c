@@ -9,24 +9,24 @@
 
 static char block[TOTALMEMORY]; 
 
-int findBlock (unsigned int size)
+struct MemoryBlock* findBlock (unsigned int size)
 {
 	struct MemoryBlock *iter=head;
 	
 	if (iter==NULL)
-		
 		return 0;
+		
 	else
 	{
 		while (iter!=NULL)
 		{
 			if (iter->size>=size && iter->isFree==1)
 			{
-				return iter->index;
+				return iter;
 			}
 			iter=iter->next;
 		}
-		return NOMEM;
+		return NULL;
 	}
 }
 void garbagecollector()
@@ -74,7 +74,7 @@ void *mymalloc(unsigned int size, char *file, int line)
 	}
 	else
 	{
-		int freeBlock;
+	
 		
 		struct MemoryBlock *entry;
 		struct MemoryBlock *exit;
@@ -82,18 +82,18 @@ void *mymalloc(unsigned int size, char *file, int line)
 		
 		
 		
-		freeBlock=findBlock(size+sizeof(struct MemoryBlock));
+		entry=findBlock(size+sizeof(struct MemoryBlock));
 		
-		if (freeBlock==NOMEM)
+		if (entry==NULL)
 		{
 			fprintf(stderr, "Not enough free memory FILE: '%s' on LINE: '%d'\n", file, line);
 			
 			return 0;
 		}
 		
-		entry=(struct MemoryBlock*)& block[freeBlock];
-		exit = (struct MemoryBlock*)& block[freeBlock+sizeof(entry)+size];
-		toInsert= (void *)& block[freeBlock+sizeof(entry)];
+		
+		exit = (struct MemoryBlock*) &block[entry->index+sizeof(entry)+size];
+		toInsert= (void *)& block[entry->index+sizeof(entry)];
 		
 		
 		exit->next=entry->next;
@@ -101,11 +101,15 @@ void *mymalloc(unsigned int size, char *file, int line)
 		
 		entry->size=size;
 		entry->isFree=0;
-		entry->index=freeBlock;
+		
 		
 		exit->index=(sizeof(entry+size));
 		exit->isFree=1;
-		exit->size=(exit->next->index)-(exit->index);
+		
+		if (exit->next!=NULL)
+			exit->size=(exit->next->index)-(exit->index);
+		else
+			exit->size=sizeof(block)-exit->index;
 		
 		return toInsert;
 		
@@ -123,8 +127,11 @@ void myfree(void *p, char *file, int line)
  {
 	int *p=malloc(sizeof(int));
 	*p=30;
+	int *z=malloc(sizeof(int));
+	*z=323;
 	
-	printf("%i", *p);
+	printf("%i\n", *p);
+	printf("%i\n", *z);
 	
 	return 0;
  }
