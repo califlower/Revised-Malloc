@@ -1,16 +1,11 @@
 #include "malloc.h"
-#include <stdio.h>
+
 
 #define TOTALMEMORY 5000
 
 static char block[TOTALMEMORY]; 
 
-struct MemoryBlock
-{
-	struct MemoryBlock *next;
-	short isFree; 
-	unsigned int size; 
-}*head;
+
 
 struct MemoryBlock* findBlock (unsigned int size)
 {
