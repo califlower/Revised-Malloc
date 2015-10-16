@@ -14,6 +14,7 @@ struct MemoryBlock
 	struct MemoryBlock *next;
 	int isFree; 
 	int index;
+	
 	unsigned int size; 
 }*head;
 

@@ -14,12 +14,15 @@ struct MemoryBlock* findBlock (unsigned int size)
 	struct MemoryBlock *iter=head;
 	
 	if (iter==NULL)
+		
 		return 0;
 		
 	else
 	{
+		
 		while (iter!=NULL)
 		{
+			
 			if (iter->size>=size && iter->isFree==1)
 			{
 				return iter;
@@ -63,7 +66,7 @@ void *mymalloc(unsigned int size, char *file, int line)
 		exit->next=NULL;
 		exit->isFree=1;
 		exit->size=sizeof(block)-(sizeof(entry)+size);
-		exit->index=sizeof(entry+size);
+		exit->index=sizeof(entry)+size;
 		
 		head=entry;
 		
@@ -81,8 +84,8 @@ void *mymalloc(unsigned int size, char *file, int line)
 		void *toInsert;
 		
 		
-		
 		entry=findBlock(size+sizeof(struct MemoryBlock));
+		
 		
 		if (entry==NULL)
 		{
@@ -90,28 +93,20 @@ void *mymalloc(unsigned int size, char *file, int line)
 			
 			return 0;
 		}
+		exit=(struct MemoryBlock*)& block[sizeof(struct MemoryBlock)+size+entry->index];
+		toInsert=(void *) &block[entry->index+sizeof(struct MemoryBlock)];
 		
-		
-		exit = (struct MemoryBlock*) &block[entry->index+sizeof(entry)+size];
-		toInsert= (void *)& block[entry->index+sizeof(entry)];
-		
-		
-		exit->next=entry->next;
-		entry->next=exit;
-		
-		entry->size=size;
-		entry->isFree=0;
-		
-		
-		exit->index=(sizeof(entry+size));
 		exit->isFree=1;
+		exit->size=30;
+		exit->next=entry->next;
+		exit->index=entry->index+size;
 		
-		if (exit->next!=NULL)
-			exit->size=(exit->next->index)-(exit->index);
-		else
-			exit->size=sizeof(block)-exit->index;
+		entry->next=exit;
+		entry->isFree=0;
+		entry->size=size;
 		
 		return toInsert;
+		
 		
 	}
 
@@ -129,9 +124,12 @@ void myfree(void *p, char *file, int line)
 	*p=30;
 	int *z=malloc(sizeof(int));
 	*z=323;
+	int *x=malloc(sizeof(int));
+	*x=12;
 	
 	printf("%i\n", *p);
 	printf("%i\n", *z);
+	printf("%i\n", *x);
 	
 	return 0;
  }
