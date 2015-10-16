@@ -1,12 +1,7 @@
 #include "malloc.h"
 #include <stdio.h>
 
-
-
-
 #define TOTALMEMORY 5000
-#define NOMEM	-1
-
 
 static char block[TOTALMEMORY]; 
 
