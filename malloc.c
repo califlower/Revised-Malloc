@@ -100,7 +100,6 @@ void *mymalloc(unsigned int size, char *file, int line)
 		entry->next=end;
 		entry->isFree=0;
 			
-		printf("%i\n", end->size);
 		
 		return (char *) entry+ sizeof(struct MemoryBlock);
 		
