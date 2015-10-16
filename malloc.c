@@ -49,12 +49,14 @@ void *mymalloc(unsigned int size, char *file, int line)
 		end->isFree=1;
 		end->size=sizeof(block)-(sizeof(struct MemoryBlock)+size);
 			
+		
 		return (char *) head+sizeof(struct MemoryBlock);
 		
 	}
 	/* on all other runs */
 	else
-	{
+	{	
+		
 		struct MemoryBlock *entry;
 		struct MemoryBlock *end;
 	
@@ -72,7 +74,6 @@ void *mymalloc(unsigned int size, char *file, int line)
 		{
 			end->size=entry->size-(size+sizeof(struct MemoryBlock));
 			end->next=NULL;
-			
 		}
 		else
 		{
@@ -98,17 +99,25 @@ void myfree(void *p, char *file, int line)
 	struct MemoryBlock *del= (struct MemoryBlock*) p-sizeof(struct MemoryBlock);
 	struct MemoryBlock *iter=head;
 	
+	
 	if (del->isFree==1)
 	{
 		fprintf(stderr, "Already freed pointer, error in FILE:'%s' on LINE:'%d'\n", file, line);
 		exit(0);
 	}
+	else if (head->next->next==NULL)
+	{
+		head->next=NULL;
+		head=NULL;
+		
+		return;
+	}
 	else
 	{
+		
 		del->isFree=1;
 	}	
-	
-	
+
 	while (iter && iter->next)
 	{
 			
@@ -118,7 +127,8 @@ void myfree(void *p, char *file, int line)
 			iter->next=iter->next->next;
 		}
 		iter=iter->next;
-	}	
+	}
+	
 }
 
 
