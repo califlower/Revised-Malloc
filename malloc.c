@@ -3,11 +3,14 @@
 
 
 
-#define TOTALMEMORY 5000
+
+#define TOTALMEMORY 50000000
 #define NOMEM	-1
 
 
 static char block[TOTALMEMORY]; 
+
+
 
 struct MemoryBlock* findBlock (unsigned int size)
 {
@@ -51,22 +54,22 @@ void *mymalloc(unsigned int size, char *file, int line)
 	{
 		
 		struct MemoryBlock *entry;
-		struct MemoryBlock *exit;
+		struct MemoryBlock *end;
 		void *toInsert;
 		
 		entry = (struct MemoryBlock*)& block[0];		
-		exit = (struct MemoryBlock*)& block[sizeof(entry)+size];
+		end = (struct MemoryBlock*)& block[sizeof(entry)+size];
 		toInsert= (void *)& block[sizeof(entry)];
 		
 		entry->size=size;
-		entry->next=exit;
+		entry->next=end;
 		entry->isFree=0;
 		entry->index=0;
 		
-		exit->next=NULL;
-		exit->isFree=1;
-		exit->size=sizeof(block)-(sizeof(entry)+size);
-		exit->index=sizeof(entry)+size;
+		end->next=NULL;
+		end->isFree=1;
+		end->size=sizeof(block)-(sizeof(entry)+size);
+		end->index=sizeof(entry)+size;
 		
 		head=entry;
 		
@@ -80,7 +83,7 @@ void *mymalloc(unsigned int size, char *file, int line)
 	
 		
 		struct MemoryBlock *entry;
-		struct MemoryBlock *exit;
+		struct MemoryBlock *end;
 		void *toInsert;
 		
 		
@@ -90,29 +93,19 @@ void *mymalloc(unsigned int size, char *file, int line)
 		if (entry==NULL)
 		{
 			fprintf(stderr, "Not enough free memory FILE: '%s' on LINE: '%d'\n", file, line);
-			
+			exit(0);
 			return 0;
 		}
-		exit=(struct MemoryBlock*)& block[sizeof(struct MemoryBlock)+size+entry->index];
+		
+		end=(struct MemoryBlock*)& block[sizeof(struct MemoryBlock)+size+entry->index+9];
 		toInsert=(void *) &block[entry->index+sizeof(struct MemoryBlock)];
 		
-		exit->isFree=1;
+		end->isFree=1;
+		end->next=entry->next;
+		end->index=entry->index+size;
+		end->size=sizeof(block)-entry->index;
 		
-		
-		exit->next=entry->next;
-		exit->index=entry->index+size;
-		
-		
-		if (exit->next==NULL)
-		{
-			exit->size=sizeof(block)-exit->index;
-		}
-		else
-		{
-			exit->size=exit->next->index-exit->index;
-		}
-		
-		entry->next=exit;
+		entry->next=end;
 		entry->isFree=0;
 		entry->size=size;
 		
@@ -137,7 +130,11 @@ void myfree(void *p, char *file, int line)
 	*z=323;
 	int *x=malloc(sizeof(int));
 	*x=12;
-	
+	int *w=malloc(sizeof(int));
+	*w=12;
+	int *e=malloc(sizeof(int));
+	*e=12;
+
 	printf("%i\n", *p);
 	printf("%i\n", *z);
 	printf("%i\n", *x);
