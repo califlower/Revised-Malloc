@@ -43,7 +43,7 @@ void *mymalloc(unsigned int size, char *file, int line)
 		head->size=size;
 		head->next=end;
 		head->isFree=0;
-	;
+	
 		
 		end->next=NULL;
 		end->isFree=1;
@@ -96,6 +96,11 @@ void *mymalloc(unsigned int size, char *file, int line)
 
 void myfree(void *p, char *file, int line)
 {
+	if (p == NULL){
+		printf("Trying to Free Null Pointer, Error\n");
+		return;
+	}
+	
 	struct MemoryBlock *del= (struct MemoryBlock*)((char*)p - sizeof(struct MemoryBlock));
 	struct MemoryBlock *iter=head;
 
@@ -126,3 +131,4 @@ void myfree(void *p, char *file, int line)
 	return;
 	
 }
+
