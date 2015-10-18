@@ -115,7 +115,6 @@ void myfree(void *p, char *file, int line)
 	{
 		
 		del->isFree=1;
-		return;
 	}	
 
 	while (iter && iter->next)
