@@ -26,7 +26,7 @@ void *mymalloc(unsigned int size, char *file, int line)
 	{
 		fprintf(stderr, "Unable to allocate 0 bytes in FILE: '%s' on LINE: '%d'\n", file, line);
 		
-		exit(0);
+		return NULL;
 	}
 	
 	/*if head is empty. AKA first time malloc is ran */
