@@ -1,27 +1,34 @@
-#include "malloc.h"
+#include "malloc.c"
+
 int main(int argc, char **argv) 
  {
-	int *p=malloc(sizeof(int));
-	*p=30;
-	int *x=malloc(sizeof(int));
-	*x=2;
-	int *y=malloc(sizeof(int));
-	*y=1;
-	int *m=malloc(sizeof(int));
-	*m=40;
-	int *n=malloc(sizeof(int));
-	*n=40;
-	int *a=malloc(sizeof(int));
-	*a=40;
-	int *u=malloc(sizeof(int));
-	*u=40;
+ 	
+  printf("Test Case 3: (Allocating Memory for a Character)\n");
 
-	free(u);
-	printf("%i\n", *p);
-	printf("%i\n", *x);
-	printf("%i\n", *y);
-	printf("%i\n", *m);
-	printf("%i\n", *n);
+	char *z=malloc(sizeof(char*));
+	*z='z';
+	char *x=malloc(sizeof(char));
+	*x='x';
+	char *y=malloc(sizeof(char));
+	*y='y';
+	char *m=malloc(sizeof(char));
+	*m='m';
+	char *n=malloc(sizeof(char));
+	*n='n';
+	char *a=malloc(sizeof(char));
+	*a='a';
+	char *u=malloc(sizeof(char));
+	*u='u';
 	
+	printf("%c\n", *z);
+	printf("%c\n", *x);
+	printf("%c\n", *y);
+	printf("%c\n", *m);
+	printf("%c\n", *n);
+  	printf("%c\n", *a);
+	printf("%c\n", *u);
+
+  printf("Test Case 2: (Allocated Memory for All Character Test Cases)\n");
+
 	return 0;
  }
