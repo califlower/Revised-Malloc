@@ -1,0 +1,120 @@
+Test Cases For Malloc/Free:
+———————————————————————————————
+Test Case 1: Allocating Memory for Small Integers
+
+Inputs:
+Int *p = malloc(sizeof(int))
+Int *x = malloc(sizeof(int))
+Int *y = malloc(sizeof(int))
+Int *m = malloc(sizeof(int))
+Int *n = malloc(sizeof(int))
+Int *u = malloc(sizeof(int))
+
+Expected Outputs: (These numbers are what the individual pointers, point to)
+30
+2
+1
+40
+40
+40
+———————————————————————————————
+Test Case 2: Allocating Memory for Doubles
+
+Inputs:
+double *p=malloc(sizeof(double));
+double *x=malloc(sizeof(double));
+double *y=malloc(sizeof(double));
+double *m=malloc(sizeof(double));
+double *n=malloc(sizeof(double));
+double *u=malloc(sizeof(double));
+
+Expected Outputs: (These numbers are what the individual pointers, point to)
+30
+2
+1.3
+40
+50.123
+-502.1251
+0.02414
+———————————————————————————————
+Test Case 3: (Allocating Memory for a Character)
+
+Inputs:
+char *z=malloc(1000*sizeof(char));
+char *d=malloc(100*sizeof(char));
+char *f=malloc(100*sizeof(char));
+char *t=malloc(sizeof(char));
+
+Expected Outputs: (These characters are what the individual pointers, point to)
+z
+d
+f
+t
+———————————————————————————————
+Test Case 4: (Allocating A lot of Memory)
+
+Inputs:
+int *ptr =malloc(500*sizeof(int));
+char *d=malloc(100*sizeof(char));
+char *f=malloc(100*sizeof(char));
+char *j=malloc(1000*sizeof(char));
+char *x=malloc(1000*sizeof(char));
+
+Expected Outputs: (These values are what the individual pointers, point to)
+5
+d
+f
+j
+x
+———————————————————————————————
+Test Case 5: (Allocating To Much Memory)
+
+Inputs:
+char *d=malloc(10000*sizeof(char));
+
+Expected Outputs:
+Error Statement: “No more available space, error in FILE: ….”
+———————————————————————————————
+Test Case 6: (Freeing Space to Add Memory)
+
+Inputs:
+int *p=malloc(500*sizeof(int));
+int *d=malloc(500*sizeof(int));
+int *x=malloc(600*sizeof(int));
+free(p);
+free(d);
+x=malloc(600*sizeof(int));
+
+Expected Outputs: At first there is not enough space to add the value 20 but then we free space and then are able to do so.
+(These values are what the individual pointers, point to):
+
+15
+25
+Error Statement: “No more available space, error in FILE: ….”
+20
+———————————————————————————————
+Test Case 7: (Redundant Freeing of Pointer)
+
+Inputs:
+int *p=malloc(500*sizeof(int));
+free(p);
+free(p);
+p=malloc(500*sizeof(int));
+free(p);
+p=malloc(500*sizeof(int));
+
+Expected Outputs: (These values are what the individual pointers, point to):
+5
+Error Statement: “Already freed pointer, error in FILE: …”
+5
+5
+
+
+
+
+
+
+
+
+
+
