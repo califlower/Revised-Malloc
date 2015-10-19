@@ -1,27 +1,33 @@
-#include "malloc.h"
+#include "malloc.c"
+
 int main(int argc, char **argv) 
  {
-	int *p=malloc(sizeof(int));
-	*p=30;
-	int *x=malloc(sizeof(int));
+ 	
+  printf("Test Case 2: (Allocating Memory for a Double)\n");
+	double *p=malloc(sizeof(double));
+	*p=30.0;
+	double *x=malloc(sizeof(double));
 	*x=2;
-	int *y=malloc(sizeof(int));
-	*y=1;
-	int *m=malloc(sizeof(int));
+	double *y=malloc(sizeof(double));
+	*y=1.3;
+	double *m=malloc(sizeof(double));
 	*m=40;
-	int *n=malloc(sizeof(int));
-	*n=40;
-	int *a=malloc(sizeof(int));
-	*a=40;
-	int *u=malloc(sizeof(int));
-	*u=40;
+	double *n=malloc(sizeof(double));
+	*n=50.123;
+	double *a=malloc(sizeof(double));
+	*a=-502.1521;
+	double *u=malloc(sizeof(double));
+	*u=0.02414;
 
-	free(u);
-	printf("%i\n", *p);
-	printf("%i\n", *x);
-	printf("%i\n", *y);
-	printf("%i\n", *m);
-	printf("%i\n", *n);
-	
+	printf("%g\n", *p);
+	printf("%g\n", *x);
+	printf("%g\n", *y);
+	printf("%g\n", *m);
+	printf("%g\n", *n);
+  	printf("%g\n", *a);
+	printf("%g\n", *u);
+
+  printf("Test Case 2: (Allocated Memory for All Double Test Cases)\n");
+
 	return 0;
  }
