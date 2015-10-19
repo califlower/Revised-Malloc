@@ -23,6 +23,7 @@ int main(int argc, char **argv)
 	printf("%i\n", *y);
 	printf("%i\n", *m);
 	printf("%i\n", *n);
-	
+	printf("%i\n", *u);
+
 	return 0;
  }
