@@ -10,7 +10,7 @@ printf("Test Case 5: (Allocating To Much Memory )\n");
 	printf("%c\n", *d);
 	
 	
-  printf("Test Case 3: (Allocated To Much Memory Test Cases)\n");
+  printf("Test Case 5: (Allocated To Much Memory Test Cases)\n");
 
 	return 0;
  }
