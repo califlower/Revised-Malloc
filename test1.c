@@ -1,6 +1,8 @@
 #include "malloc.h"
 int main(int argc, char **argv) 
  {
+ 
+ printf("Test Case 1: (Allocating Memory for Small Integars)\n");
 	int *p=malloc(sizeof(int));
 	*p=30;
 	int *x=malloc(sizeof(int));
@@ -16,7 +18,6 @@ int main(int argc, char **argv)
 	int *u=malloc(sizeof(int));
 	*u=40;
 
-	free(u);
 	printf("%i\n", *p);
 	printf("%i\n", *x);
 	printf("%i\n", *y);
