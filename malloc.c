@@ -29,6 +29,12 @@ void *mymalloc(unsigned int size, char *file, int line)
 		return NULL;
 	}
 	
+	if (size > TOTALMEMORY){
+	
+		fprintf(stderr, "No more available space, error in FILE:'%s' on LINE:'%d'\n", file, line);
+		return NULL;
+	}
+	
 	/*if head is empty. AKA first time malloc is ran */
 	else if (!head)
 	{
@@ -130,4 +136,3 @@ void myfree(void *p, char *file, int line)
 	return;
 	
 }
-
