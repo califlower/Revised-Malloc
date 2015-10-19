@@ -5,7 +5,7 @@ int main(int argc, char **argv)
  	
   printf("Test Case 3: (Allocating Memory for a Character)\n");
 
-	char *z=malloc(10*sizeof(char));
+	char *z=malloc(1000*sizeof(char));
 	*z='z';
 	printf("%c\n", *z);
 	
@@ -17,9 +17,9 @@ int main(int argc, char **argv)
 	*f='f';
 	printf("%c\n", *f);
 	
-	char *j=malloc(1000*sizeof(char));
-	*j='j';
-	printf("%c\n", *j);
+	char *t=malloc(sizeof(char));
+	*t='t';
+	printf("%c\n", *t);
 	
   printf("Test Case 3: (Allocated Memory for All Character Test Cases)\n");
 
