@@ -13,12 +13,12 @@ printf("Test Case 6: (Freeing Space To Add Memory)\n");
 	printf("%i\n", *d);
 	
 	
-	int *x=malloc(400*sizeof(int));
+	int *x=malloc(600*sizeof(int));
 	printf("Freeing other stuff to clear space for new int!\n");
 
 	free(p);
 	free(d);
-	x=malloc(200*sizeof(int));
+	x=malloc(600*sizeof(int));
 	*x=20;
 	printf("%i\n", *x);
 	
