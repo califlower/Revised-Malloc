@@ -1,27 +1,21 @@
-#include "malloc.h"
+#include "malloc.c"
+
 int main(int argc, char **argv) 
  {
-	int *p=malloc(sizeof(int));
-	*p=30;
-	int *x=malloc(sizeof(int));
-	*x=2;
-	int *y=malloc(sizeof(int));
-	*y=1;
-	int *m=malloc(sizeof(int));
-	*m=40;
-	int *n=malloc(sizeof(int));
-	*n=40;
-	int *a=malloc(sizeof(int));
-	*a=40;
-	int *u=malloc(sizeof(int));
-	*u=40;
+ 	
+printf("Test Case 7: (Redundant Freeing of Pointer)\n");	
 
-	free(u);
+	int *p=malloc(500*sizeof(int));
+	*p=5;
 	printf("%i\n", *p);
-	printf("%i\n", *x);
-	printf("%i\n", *y);
-	printf("%i\n", *m);
-	printf("%i\n", *n);
+	free(p);
+	p=malloc(500*sizeof(int));
+	printf("%i\n", *p);
+	free(p);
+	p=malloc(500*sizeof(int));
+	printf("%i\n", *p);
 	
+  printf("Test Case 7: Pointer Allocated Memory, Freed, then Allocated Again\n");
+
 	return 0;
- }
+}
