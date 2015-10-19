@@ -1,27 +1,16 @@
-#include "malloc.h"
+#include "malloc.c"
+
 int main(int argc, char **argv) 
  {
-	int *p=malloc(sizeof(int));
-	*p=30;
-	int *x=malloc(sizeof(int));
-	*x=2;
-	int *y=malloc(sizeof(int));
-	*y=1;
-	int *m=malloc(sizeof(int));
-	*m=40;
-	int *n=malloc(sizeof(int));
-	*n=40;
-	int *a=malloc(sizeof(int));
-	*a=40;
-	int *u=malloc(sizeof(int));
-	*u=40;
-
-	free(u);
-	printf("%i\n", *p);
-	printf("%i\n", *x);
-	printf("%i\n", *y);
-	printf("%i\n", *m);
-	printf("%i\n", *n);
+ 	
+printf("Test Case 5: (Allocating To Much Memory )\n");
 	
+	char *d=malloc(10000*sizeof(char));
+	*d='d';
+	printf("%c\n", *d);
+	
+	
+  printf("Test Case 3: (Allocated To Much Memory Test Cases)\n");
+
 	return 0;
  }
