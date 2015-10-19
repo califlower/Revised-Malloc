@@ -2,7 +2,7 @@ COMPILER = gcc
 CFLAGS = -Wall -g -ansi -pedantic
 CFLAGS2 = -g
 
-all: malloc Test1 Test2 Test3 Test4 Test5 Test6 Test7 Test8 Test9 Test10 Test11 Test12 Test13 Test14
+all: malloc Test1 Test2 Test3 Test4 Test5 Test6 Test7
 .PHONY: all
 .PHONY: clean
 
