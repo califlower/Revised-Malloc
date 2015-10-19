@@ -9,6 +9,7 @@ printf("Test Case 7: (Redundant Freeing of Pointer)\n");
 	*p=5;
 	printf("%i\n", *p);
 	free(p);
+	free(p);
 	p=malloc(500*sizeof(int));
 	printf("%i\n", *p);
 	free(p);
