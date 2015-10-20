@@ -65,56 +65,5 @@ Test7: malloc.o Test7.o
 	$(COMPILER) $(CFLAGS) -o Test7 Test7.o malloc.o
 
 
-Test8.o: Test8.c
-	$(COMPILER) $(CFLAGS2) -c Test8.c
-
-Test8: malloc.o Test8.o
-	$(COMPILER) $(CFLAGS) -o Test8 Test8.o malloc.o
-
-
-Test9.o: Test9.c
-	$(COMPILER) $(CFLAGS2) -c Test9.c
-
-Test9: malloc.o Test9.o
-	$(COMPILER) $(CFLAGS) -o Test9 Test9.o malloc.o
-
-
-Test10.o: Test10.c
-	$(COMPILER) $(CFLAGS2) -c Test10.c
-
-Test10: malloc.o Test10.o
-	$(COMPILER) $(CFLAGS) -o Test10 Test10.o malloc.o
-
-
-Test11.o: Test11.c
-	$(COMPILER) $(CFLAGS2) -c Test11.c
-
-Test11: malloc.o Test11.o
-	$(COMPILER) $(CFLAGS) -o Test11 Test11.o malloc.o
-
-
-Test12.o: Test12.c
-	$(COMPILER) $(CFLAGS2) -c Test12.c
-
-Test12: malloc.o Test12.o
-	$(COMPILER) $(CFLAGS) -o Test12 Test12.o malloc.o
-
-
-Test13.o: Test13.c
-	$(COMPILER) $(CFLAGS2) -c Test13.c
-
-Test13: malloc.o Test13.o
-	$(COMPILER) $(CFLAGS) -o Test13 Test13.o malloc.o
-
-
-Test14.o: Test14.c
-	$(COMPILER) $(CFLAGS2) -c Test14.c
-
-Test14: malloc.o Test14.o
-	$(COMPILER) $(CFLAGS) -o Test14 Test14.o malloc.o
-
-
-	
 clean:
-	rm -rf $(wildcard *.o) malloc Test1 Test2 Test3 Test4 Test5 Test6 Test7 Test8 Test9 Test10 Test11 Test12 Test13 Test14
-
+	rm -rf $(wildcard *.o) malloc Test1 Test2 Test3 Test4 Test5 Test6 Test7
